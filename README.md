@@ -20,13 +20,13 @@ CSE_2023/
     └── README.md             # index of 4th-year projects
 ```
 
-Each project folder is named **`project-name_USN`** (example: `flip-a-find_4VP23CS004`).
+Each project folder is named **`project-name_USN`** (example: `flip-a-find_4VP23CS004`). For a group project, use **one** USN in the folder name (the submitter, or the first USN listed). List **every** author and USN in that year’s index table; do not concatenate multiple USNs in the folder name.
 
 ---
 
 ## How to add your project
 
-Do this from your own fork. Do not push directly to the upstream `main` branch.
+Do this from your own fork. Do not push directly to the upstream `main` branch. For a group project, **one** member forks, adds the submodule, and opens the PR. The index still names the full team.
 
 ### 1. Fork
 
@@ -51,7 +51,7 @@ Use a short, unique branch name:
 git checkout -b add/<project-name>_<USN>
 ```
 
-Example: `add/flip-a-find_4VP23CS004`
+Example: `add/flip-a-find_4VP23CS004` (for a group, still use a single USN in the branch name).
 
 ### 4. Add the project as a submodule
 
@@ -66,27 +66,38 @@ git submodule add <your-project-repo-url> "<Nth Year>/<project-name>_<USN>"
 Examples:
 
 ```bash
-git submodule add https://github.com/<your-username>/flip-a-find.git "2nd Year/flip-a-find_4VP23CS004"
+git submodule add https://github.com/Adithya-1489181/flip-a-find.git "2nd Year/flip-a-find_4VP23CS004"
 ```
 
 Rules:
 
 - Folder name is **`project-name_USN`** only — no extra spaces, no extra suffixes.
 - Use a lowercase, hyphenated project name when possible (`tic-tac-toe_4VP23CS039`).
-- USN must match your university seat number exactly.
+- Use **one** USN in the folder name, even for group projects. Do not concatenate multiple USNs.
+- That USN must be a real member of the team (prefer the person submitting the PR).
 - Add the submodule **inside** the correct year folder. Do not copy project files into this repo.
 
 ### 5. Index the project in that year’s `README.md`
 
 Open `Nth Year/README.md` and add a row for your project. Keep the table sorted (by USN, then project name) unless the year file already uses another consistent order.
 
-Use this format:
+Use this format. For a group project, put all authors and USNs in the same cells, separated with `<br>` tags. The folder link and submodule path still contain only one USN.
+
+**CMD / Markdown view:**
 
 ```markdown
-| Project | USN | Author | Repository |
+| Project | USNs | Authors | Repository |
 | --- | --- | --- | --- |
-| [flip-a-find](./flip-a-find_4VP23CS004) | 4VP23CS004 | Your Name | [github.com/you/flip-a-find](https://github.com/you/flip-a-find) |
+| [flip-a-find](./flip-a-find_4VP23CS004) | 4VP23CS004 | Your Name | [github.com/you/flip-a-find](https://github.com/Adithya-1489181/flip-a-find) |
+| [example-project](./example-project_4VP23CS0XX) | 4VP23CS0XX<br>4VP23CS0XY | First Author<br>Second Author | [github.com/you/example-project](https://github.com/you/example-project) |
 ```
+
+**Table view:**
+
+| Project | USNs | Authors | Repository |
+| --- | --- | --- | --- |
+| [flip-a-find](./flip-a-find_4VP23CS004) | 4VP23CS004 | Your Name | [github.com/you/flip-a-find](https://github.com/Adithya-1489181/flip-a-find) |
+| [example-project](./example-project_4VP23CS0XX) | 4VP23CS0XX<br>4VP23CS0XY | First Author<br>Second Author | [github.com/you/example-project](https://github.com/you/example-project) |
 
 Do **not** skip this step. A submodule without an index entry will be requested as a change in review.
 
@@ -130,7 +141,7 @@ Add <project-name> (<USN>) — <Nth Year>
 **Description** should include:
 
 - Project name and a one-line summary of what it is
-- Your name and USN
+- Every author’s name and USN (for a group project)
 - Year folder used and why (the year you built it)
 - Link to the standalone project repository
 - Confirmation that the folder is named `project-name_USN`
@@ -141,6 +152,7 @@ Add <project-name> (<USN>) — <Nth Year>
 - [ ] You forked first and the PR targets upstream `main`
 - [ ] The project is a **submodule**, not pasted source
 - [ ] Folder name is `project-name_USN`
+- [ ] Group projects use one USN only in the folder and list every author and USN in the year index
 - [ ] The year folder is correct
 - [ ] The year `README.md` lists the project with working links
 - [ ] `.gitmodules` points at the correct clone URL
@@ -159,16 +171,32 @@ PRs that skip the year index, use the wrong folder name, or dump project files i
 
 ---
 
-## Cloning this repository (with projects)
+## Prompt for AI agents
 
-After clone, initialise submodules so project folders are populated:
+After cloning this repository, you may give the following prompt to an AI coding agent. Replace the values in brackets before using it.
 
-```bash
-git clone --recurse-submodules https://github.com/<org-or-owner>/CSE_2023.git
+```text
+You are adding one project to the CSE_2023 repository. Complete the entire task through pushing the changes to the remote branch.
+
+Project repository link: [PROJECT_REPOSITORY_URL]
+Year completed: [1st/2nd/3rd/4th Year]
+Project name: [PROJECT_NAME]
+Authors and USNs:
+- [AUTHOR_NAME] — [USN]
+- [AUTHOR_NAME] — [USN]
+
+Follow these rules:
+1. Inspect the repository instructions and current year README before editing.
+2. Work from a fork, create a branch named add/<project-name>_<one-usn>, and never push directly to upstream main.
+3. Add the project as a Git submodule under the year folder for the year completed.
+4. Name the project folder <project-name>_<one-usn>. Use exactly one real team member USN, preferably the submitting member's USN. Never concatenate multiple USNs in the folder name.
+5. Add one index-table row to <year folder>/README.md. Include every author and every USN in the row, using <br> between multiple values when needed, and link the project repository.
+6. Inspect the diff and status. Commit only .gitmodules, the new submodule gitlink, and the relevant year README update.
+7. Commit with: Add <project-name> (<one-usn>) to <year folder>
+8. Push the branch to origin with git push -u origin add/<project-name>_<one-usn>.
+9. Report the branch name, commit hash, changed files, and pull-request target after the push. Do not create a pull request unless explicitly asked.
+
+Before making changes, ask for any missing value above. If the project URL cannot be cloned or the remote is not a fork, stop and report the exact blocker instead of guessing.
 ```
 
-If you already cloned without submodules:
-
-```bash
-git submodule update --init --recursive
-```
+---
