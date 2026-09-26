@@ -1,3 +1,6 @@
 [submodule "2nd Year/tick_tac_toe_4VP23CS039"]
 	path = 2nd Year/tick_tac_toe_4VP23CS039
 	url = https://github.com/Kaushikmuliya/Tic-Tac-Toe.git
+[submodule "2nd Year/flip-a-find_4VP23CS004"]
+	path = 2nd Year/flip-a-find_4VP23CS004
+	url = https://github.com/Adithya-1489181/flip-a-find.git
