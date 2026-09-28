@@ -7,3 +7,6 @@
 [submodule "2nd Year/Vistara_4VP23CS004"]
 	path = 2nd Year/Vistara_4VP23CS004
 	url = https://github.com/Adithya-1489181/Vistara2024
+[submodule "4th Year/ai-powered-sign-language-to-text-speech_4VP23CS095"]
+	path = 4th Year/ai-powered-sign-language-to-text-speech_4VP23CS095
+	url = https://github.com/shravya454/Sign_Language_To_Text_-_Speech.git
